@@ -1,77 +1,97 @@
 <!DOCTYPE HTML>
-<html lang="ko">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>gnb메뉴</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <title>Document</title>
     <style>
-        ul,
-        li {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
+        *{margin: 0; padding: 0;}
+        body{font: 1em Arial,sans-serif; color: #000;}
+        li{list-style: none;}
+        .is-hidden {position: absolute;left: -9999px;}
+        a {text-decoration: none; color: #000;}
 
-        li {
-            margin: 5px 0;
-        }
-
-        li>ul {
-            margin-left: 50px;
-        }
+        #header {width: 960px; margin: 0 auto;}
+        .l-float {width: 600px; margin: 10px auto 0;}
+        .l-float > * {float: left;}
+        .l-float:after {content: ''; clear: both; display: block;}
+        .l-float > li {width: 100px; position: relative;}
+        .l-float > li > a {display: block; text-align: center; letter-spacing: 2px; font-size: 0.8em; padding: 10px 0px;}
+        .l-float > li > a:hover {text-decoration: underline;}
+        .l-stacked {position: absolute; left: 50%; margin-left: -90px; width: 180px; background-color: #fff; border: 1px solid #000; display: none;}
+        .l-stacked > li > a {display: block; padding: 15px 10px; border-top: 1px solid #eee; font-size: 0.7em; letter-spacing: 1px;}
+        .l-stacked > li > a:hover {background-color: #eee;}
+        .l-stacked > li:first-child > a {border-top: none;}
+        .l-stacked > li {}
     </style>
+ 
     <script>
-        $(document).ready(function(){
-            $(".main-nav>li>ul").hide();
+    $(document).ready(function() {
+        //마우스 오버, 포커스 들어올 때
+        $(".l-float>li>a").on("mouseover focusin", function() {
+            $(".l-float ul:visible").stop().slideUp();
+            $(".l-float>li>a").removeClass("on1");
             
-            $('.main-nav>li>a').on('click focus', function(){
-                var str = $(this).attr('title');
-                $('.main-nav>li').removeClass();
-                $('.main-nav>li>ul').hide();
-                
-                $("."+str+"_depth2").show();
-                $("."+str+"_depth2").parent().addClass('on');
-            });
-            
-            $("li:last a").on("blur", function(){
-                $(".main-nav>li>ul").hide();
-                $('.main-nav>li').removeClass();
-            });
-        })
+            $(this).addClass("on1");
+            $(this).next().stop().slideDown();
+        });
+        
+        //마우스 아웃, 포커스 나갈 때
+        $(".l-float").on("mouseleave", function () {
+            $(".l-float ul:visible").stop().slideUp("normal");
+            //$(this).next().stop().slideDown();
+        });
+        
+        $(".l-float li ul li:last-child a").on("blur", function () {
+            $(".l-float ul:visible").stop().slideUp("normal");
+            //$(this).closest(".l-float>li").addClass("on1");
+        });
+   
+        
+
+    })
+        
     </script>
 </head>
-
 <body>
+    <header id="header">
+        <h1 class="is-hidden">gnb메뉴</h1>
+        <nav class="nav-primary">
+            <ul class="l-float">
+                <li><a href="#">ABOUT</a>
+                    <ul class="l-stacked">
+                        <li><a href="#">INTRODUCTION</a></li>
+                        <li><a href="#">HISTORY</a></li>
+                        <li><a href="#">ORGANIZATION</a></li>
+                        <li><a href="#">CERTIFICATION</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">BUSINESS</a>
+                    <ul class="l-stacked">
+                        <li><a href="#">BUSINESS CONTENTS</a></li>
+                        <li><a href="#">CONSULTING</a></li>
+                        <li><a href="#">WEB APPLICATION</a></li>
+                        <li><a href="#">MIS</a></li>
+                        <li><a href="#">PMS</a></li>
+                        <li><a href="#">R&amp;D</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">WORK</a></li>
+                <li><a href="#">STORY</a></li>
+                <li><a href="#">CONTACT</a></li>
+                <li><a href="#">ENGLISH</a>
+                  <ul class="l-stacked">
+                      <li><a href="#">BUSINESS CONTENTS</a></li>
+                      <li><a href="#">PMS</a></li>
+                      <li><a href="#">R&amp;D</a></li>
+                  </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
     <div>
-        <ul class="main-nav">
-            <li><a href="#" title="list1">list1</a>
-                <ul class="list1_depth2">
-                    <li><a href="#">list1 depth2</a></li>
-                    <li><a href="#">list1 depth2</a></li>
-                    <li><a href="#">list1 depth2</a></li>
-                    <li><a href="#">list1 depth2</a></li>
-                </ul>
-            </li>
-            <li><a href="#" title="list2">list2</a>
-                <ul class="list2_depth2">
-                    <li><a href="#">list1 depth2</a></li>
-                    <li><a href="#">list1 depth2</a></li>
-                    <li><a href="#">list1 depth2</a></li>
-                    <li><a href="#">list1 depth2</a></li>
-                </ul>
-            </li>
-            <li><a href="#" title="list3">list3</a>
-                <ul class="list3_depth2">
-                    <li><a href="#">list1 depth2</a></li>
-                    <li><a href="#">list1 depth2</a></li>
-                    <li><a href="#">list1 depth2</a></li>
-                    <li><a href="#">list1 depth2</a></li>
-                </ul>
-            </li>
-        </ul>
+        <a href="#">rr</a>
     </div>
 </body>
-
 </html>
