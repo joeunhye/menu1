@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        li>ul {
+            margin-left: 50px;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            $(".main-nav>li>ul").hide();
+            
+            $('.main-nav>li>a').on('click focus', function(){
+                var str = $(this).attr('title');
+                $('.main-nav>li').removeClass();
+                $('.main-nav>li>ul').hide();
+                
+                $("."+str+"_depth2").show();
+                $("."+str+"_depth2").parent().addClass('on');
+            });
+            
+            $("li:last a").on("blur", function(){
+                $(".main-nav>li>ul").hide();
+                $('.main-nav>li').removeClass();
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <div>
+        <ul class="main-nav">
+            <li><a href="#" title="list1">list1</a>
+                <ul class="list1_depth2">
+                    <li><a href="#">list1 depth2</a></li>
+                    <li><a href="#">list1 depth2</a></li>
+                    <li><a href="#">list1 depth2</a></li>
+                    <li><a href="#">list1 depth2</a></li>
+                </ul>
+            </li>
+            <li><a href="#" title="list2">list2</a>
+                <ul class="list2_depth2">
+                    <li><a href="#">list1 depth2</a></li>
+                    <li><a href="#">list1 depth2</a></li>
+                    <li><a href="#">list1 depth2</a></li>
+                    <li><a href="#">list1 depth2</a></li>
+                </ul>
+            </li>
+            <li><a href="#" title="list3">list3</a>
+                <ul class="list3_depth2">
+                    <li><a href="#">list1 depth2</a></li>
+                    <li><a href="#">list1 depth2</a></li>
+                    <li><a href="#">list1 depth2</a></li>
+                    <li><a href="#">list1 depth2</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
